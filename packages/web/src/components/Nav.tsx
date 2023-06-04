@@ -1,13 +1,18 @@
+import {
+  NavButtonText,
+  NavLogo,
+  NavLogoWrapper,
+  NavNavButton,
+  NavWrapper,
+  routes,
+} from '@health-box/common'
+import AirlineSeatIndividualSuiteIcon from '@mui/icons-material/AirlineSeatIndividualSuite'
+import BrunchDiningIcon from '@mui/icons-material/BrunchDining'
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
+import HomeIcon from '@mui/icons-material/Home'
+import WaterDropIcon from '@mui/icons-material/WaterDrop'
 import { Avatar, Box, Button, Drawer, Toolbar, Typography } from '@mui/material'
 import { alpha, styled, useTheme } from '@mui/material/styles'
-import LogoIcon from 'public/logo.svg'
-import LogoBG from 'public/logo_bg.png'
-import HomeIcon from '@mui/icons-material/Home'
-import BrunchDiningIcon from '@mui/icons-material/BrunchDining'
-import WaterDropIcon from '@mui/icons-material/WaterDrop'
-import AirlineSeatIndividualSuiteIcon from '@mui/icons-material/AirlineSeatIndividualSuite'
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
-import { routes } from '@/utils'
 import { useRouter } from 'next/router'
 
 const NAV_WIDTH = 276
@@ -39,37 +44,17 @@ const pages = [
   },
 ]
 
-const Wrapper = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.background.default,
-  height: '100%',
-}))
-
-const LogoWrapper = styled(Box)(({ theme }) => ({
-  padding: '52px 32px',
-  display: 'flex',
-  alignItems: 'center',
-  gap: '22px',
-}))
-
-const Logo = styled(Avatar)(({ theme }) => ({
-  backgroundImage: `url(${LogoBG.src})`,
-  padding: '3px',
-  width: '52px',
-  height: '52px',
-  boxShadow: `8px -4px 10px 0px ${alpha(theme.palette.custom.blue, 0.4)}`,
-}))
-
-const NavButton = styled(Button)(({ theme }) => ({
-  width: '100%',
-  padding: '20px 0 20px 37px',
-  justifyContent: 'flex-start',
-  borderRadius: 0,
-}))
-
-const ButtonText = styled(Typography)(({ theme }) => ({
-  textTransform: 'capitalize',
-  color: theme.palette.text.secondary,
-}))
+const Wrapper = styled(Box)(({ theme }) =>
+  NavWrapper(theme.palette.background.default),
+)
+const LogoWrapper = styled(Box)(() => NavLogoWrapper)
+const Logo = styled(Avatar)(({ theme }) =>
+  NavLogo(alpha(theme.palette.secondary.main, 0.4)),
+)
+const NavButton = styled(Button)(() => NavNavButton)
+const ButtonText = styled(Typography)(
+  ({ theme }) => NavButtonText(theme.palette.text.secondary) as any,
+)
 
 const Content = () => {
   const { asPath, push } = useRouter()
@@ -78,7 +63,7 @@ const Content = () => {
   return (
     <Wrapper>
       <LogoWrapper>
-        <Logo alt="Our Logo" src={LogoIcon.src} />
+        <Logo alt="Our Logo" src="/logo.svg" />
         <Typography variant="h3">Health Box</Typography>
       </LogoWrapper>
 

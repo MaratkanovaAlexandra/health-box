@@ -1,10 +1,40 @@
+import { useEffect, useState } from 'react'
+import { DayGoals, Layout, LineChart, Links } from '@/components'
+import { Firebase } from '@health-box/common'
+import { Records } from '@health-box/common'
+import {
+  Box,
+  CircularProgress,
+  Container,
+  Paper,
+  styled,
+  Typography,
+  Unstable_Grid2 as Grid,
+} from '@mui/material'
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.background.default,
+  textAlign: 'center',
+  borderRadius: '32px',
+}))
+
+const Center = styled(Box)(({ theme }) => ({
+  height: '100vh',
+  width: '100vw',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}))
 
 export default function Home() {
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    Firebase.getMe()
+      .then(() => setLoading(false))
+      .catch(() => setLoading(false))
+  }, [])
+
   return (
     <>
       <Head>
@@ -14,7 +44,41 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        home
+        {loading ? (
+          <Center>
+            <CircularProgress />
+          </Center>
+        ) : (
+          <Layout>
+            <Container maxWidth="xl" sx={{ paddingTop: '20px' }}>
+              <Typography variant="h1" sx={{ paddingBottom: '20px' }}>
+                Статистика
+              </Typography>
+              <Grid container rowSpacing={'33px'} columnSpacing={'17px'}>
+                <Grid xs={6}>
+                  <Item elevation={0} sx={{ height: '407px' }}>
+                    <LineChart
+                      title={`${Firebase.stats.calories.name} за неделю`}
+                      today={`${Firebase.records.day.calories.reduce(
+                        (a: number, b: Records) => a + b.value,
+                        0,
+                      )} ${Firebase.stats.calories.scale}`}
+                      data={Firebase.records.week.calories as number[]}
+                    />
+                  </Item>
+                </Grid>
+                <Grid xs={6}>
+                  <DayGoals />
+                </Grid>
+                <Grid xs={6}>
+                  <Item elevation={0}>
+                    <Links />
+                  </Item>
+                </Grid>
+              </Grid>
+            </Container>
+          </Layout>
+        )}
       </main>
     </>
   )

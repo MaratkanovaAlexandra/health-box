@@ -20,18 +20,15 @@
     "eslint-plugin-simple-import-sort": "7.0.0",
     "husky": "8.0.1",
     "lint-staged": "13.0.3",
-    "prettier": "2.7.1",
-    "typescript": "4.7.4"
+    "prettier": "2.7.1"
   },
   "lint-staged": {
     "*.{js,tsx,ts}": "eslint --fix"
   },
-  "workspaces": {
-    "packages": [
-      "packages/**"
+  "workspaces":  [
+      "packages/common",
+      "packages/desktop",
+      "packages/mobile",
+      "packages/web"
     ]
-  },
-  "dependencies": {
-    "react": "18.2.0"
-  }
 }

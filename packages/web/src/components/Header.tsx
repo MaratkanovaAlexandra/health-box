@@ -1,47 +1,38 @@
-import { AppBar, Avatar, Box, Container, IconButton, Menu, Skeleton, Toolbar, Typography } from "@mui/material"
-import { alpha, styled } from '@mui/material/styles'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import AddIcon from '@mui/icons-material/Add';
+import { HeaderBar, HeaderToolbarItem } from '@health-box/common'
+import { Firebase } from '@health-box/common'
+import AddIcon from '@mui/icons-material/Add'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import {
+  AppBar,
+  Avatar,
+  Box,
+  Container,
+  IconButton,
+  Skeleton,
+  Toolbar,
+  Typography,
+} from '@mui/material'
+import { styled } from '@mui/material/styles'
 
-const pages = ['Products', 'Pricing', 'Blog'];
-
-const Bar = styled(AppBar)(({theme}) => ({
-  backgroundColor: 'transparent',
-  boxShadow: 'none',
-  padding: '22px 0 5px',
-  borderBottom: `1px solid ${theme.palette.background.default}`,
-  color: theme.palette.text.primary
-}))
-
-const ToolbarItem = styled(Box)(({theme}) => ({
-  display: 'flex',
-  gap: '10px',
-  alignItems: 'center',
-}))
+const Bar = styled(AppBar)(({ theme }) =>
+  HeaderBar(theme.palette.background.default, theme.palette.text.primary),
+)
+const ToolbarItem = styled(Box)(() => HeaderToolbarItem)
 
 export const Header = () => {
   return (
-    <Bar position="static" >
-       <Container maxWidth="xl">
+    <Bar position="static">
+      <Container maxWidth="xl">
         <Toolbar disableGutters>
-            <ToolbarItem>
-              <Skeleton variant="rounded" width={52} height={52} />
-              <Typography>My Team</Typography>
-              <IconButton>
-                <ArrowDropDownIcon />
-              </IconButton>
-              <IconButton color="primary">
-                <AddIcon />
-              </IconButton>
-            </ToolbarItem>
-
-            <ToolbarItem sx={{marginLeft: 'auto'}}>
-              <Avatar/>
-              <Typography>First and Last Name</Typography>
-              <IconButton>
-                <ArrowDropDownIcon />
-              </IconButton>
-            </ToolbarItem>
+          <ToolbarItem sx={{ marginLeft: 'auto' }}>
+            <Avatar />
+            <Typography>
+              {Firebase.user.first_name} {Firebase.user.last_name}
+            </Typography>
+            <IconButton>
+              <ArrowDropDownIcon />
+            </IconButton>
+          </ToolbarItem>
         </Toolbar>
       </Container>
     </Bar>
