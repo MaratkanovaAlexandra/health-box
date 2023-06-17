@@ -1,10 +1,30 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './assets/index.css'
-import App from './App'
+import { createBrowserRouter, RouterProvider} from "react-router-dom";
+import { MainScreen, OptionsScreen, LoginScreen, RegisterScreen } from '@renderer/pages';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <MainScreen />,
+  },
+  {
+    path: '/:option',
+    element: <OptionsScreen />,
+  },
+  {
+    path: '/login',
+    element: <LoginScreen />
+  },
+  {
+    path: '/register',
+    element: <RegisterScreen />
+  }
+
+]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 )
