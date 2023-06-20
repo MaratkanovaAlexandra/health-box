@@ -22,8 +22,6 @@ export const ItemTitle: FC<ItemTitleProps> = ({title, today}) => {
   );
 };
 
-console.log(ItemTitleChartTitle(colors.light_gray, true));
-
 const styles = StyleSheet.create({
   title: ItemTitleChartTitle(colors.light_gray, true),
   titleText: ItemTitleTitleText(true),

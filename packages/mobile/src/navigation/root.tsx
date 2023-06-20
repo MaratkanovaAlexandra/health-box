@@ -14,7 +14,7 @@ export const RootNavigation = () => {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false}}
-      initialRouteName={Screens.Main}>
+      initialRouteName={Screens.Option}>
       <Stack.Screen name={Screens.Main} component={MainScreen} />
       <Stack.Screen name={Screens.Option} component={OptionScreen} />
       <Stack.Screen name={Screens.Login} component={LoginScreen} />

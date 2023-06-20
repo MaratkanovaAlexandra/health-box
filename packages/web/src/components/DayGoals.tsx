@@ -26,10 +26,10 @@ import {
 import { OverridableComponent } from '@mui/material/OverridableComponent'
 import { useRouter } from 'next/router'
 
-const Wrapper = styled(Box)(() => DayGoalsWrapper)
-const Icons = styled(Box)(() => DayGoalsIcons)
-const InfoText = styled(Typography)(() => DayGoalsInfoText)
-const Title = styled(Typography)(() => DayGoalsTitle)
+const Wrapper = styled(Box)(() => DayGoalsWrapper())
+const Icons = styled(Box)(() => DayGoalsIcons() as any)
+const InfoText = styled(Typography)(() => DayGoalsInfoText())
+const Title = styled(Typography)(() => DayGoalsTitle())
 const IconWrapper = styled(Box)(({ theme }) =>
   DayGoalsIconWrapper(theme.palette.background.default),
 )

@@ -5,3 +5,5 @@ export * from './ItemTitle';
 export * from './LineChart';
 export * from './DayGoals';
 export * from './Links';
+export * from './AddRecord';
+export * from './DoughnutChart';

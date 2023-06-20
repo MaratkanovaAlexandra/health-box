@@ -54,6 +54,7 @@
     "react-native-masked-text": "1.13.0",
     "react-native-mmkv": "2.6.1",
     "react-native-modal": "13.0.1",
+    "react-native-gesture-handler": "2.11.0",
     "react-native-permissions": "3.6.1",
     "react-native-push-notification": "8.1.1",
     "react-native-qrcode-scanner": "1.5.5",
@@ -97,5 +98,8 @@
   "lint-staged": {
     "*.{js,tsx,ts}": "eslint --fix",
     "*.{css,scss}": "yarn lint:css:fix"
+  },
+  "resolutions": {
+    "react-native-gesture-handler": "2.11.0"
   }
 }

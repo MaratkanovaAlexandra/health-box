@@ -15,7 +15,7 @@ interface ItemTitleProps {
 const ChartTitle = styled(Box)(
   ({ theme }) => ItemTitleChartTitle(theme.palette.divider) as any,
 )
-const TitleText = styled(Typography)(() => ItemTitleTitleText)
+const TitleText = styled(Typography)(() => ItemTitleTitleText())
 const TodayText = styled(Typography)(({ theme }) =>
   ItemTitleTodayText(theme.palette.primary.main),
 )
